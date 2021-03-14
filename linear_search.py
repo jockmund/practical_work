@@ -8,11 +8,4 @@ class LinearSearch(object):
             if self.array[i] == x:
                 return i
         return -1
-        # i = 0
-        # while i < len(self.array) and self.array[i] != x:
-        #     i += 1
-        # if i < len(self.array):
-        #     return i
-        # else:
-        #     return -1
 

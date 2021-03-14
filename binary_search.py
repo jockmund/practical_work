@@ -4,17 +4,17 @@ class BinarySearch(object):
         self.array = array
 
     def binary_search(self, x):
-        left = -1
+        left = 1
         right = len(self.array)
 
-        while right > left + 1:
+        while right > left:
             middle = (left + right) // 2
             if self.array[middle] >= x:
                 right = middle
             else:
-                left = middle
+                left = middle + 1
 
-        if self.array[right] == x:
-            return right
+        if self.array[left] == x:
+            return left
         else:
             return -1

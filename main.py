@@ -1,8 +1,8 @@
 from random import randint
 from sys import maxsize
-MAX_N = maxsize
-MAX_VALUE = maxsize
-MIN_VALUE = -maxsize
+MAX_N = 10000000
+MAX_VALUE = 10000000
+MIN_VALUE = -10000000
 # Чтение данных
 print('Как вы хотите считывать информацию?\n1 - ручной ввод, 2 - ввод из файла, 3 - автоматическое тестирование')
 write_mode = int(input())
@@ -29,10 +29,9 @@ elif write_mode == 2:  # Ввод из файла
         for element in second_line:
             array.append(int(element))
 elif write_mode == 3:  # Рандомная генерация
-    n = randint(1, MAX_N)
+    n = MAX_N
     x = randint(MIN_VALUE, MAX_VALUE)
     array = [randint(MIN_VALUE, MAX_VALUE) for i in range(n)]
-    print('n:', n, '\nx:', x, '\nМассив:', array)
 
 
 from time import time
@@ -48,7 +47,7 @@ elif mode_algorithm == 2:  # Бинарный алгоритм
     from binary_search import BinarySearch
     # Сортируем массив для алгоритма
     array.sort()
-    print('Отсортированный массив:', array)
+    print('Отсортированный массив', array)
     binary = BinarySearch(n, array)
     start_time = time()
     result_index = binary.binary_search(x)
