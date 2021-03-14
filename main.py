@@ -1,13 +1,12 @@
 from random import randint
 from sys import maxsize
-MAX_N = 10000000
-MAX_VALUE = 10000000
-MIN_VALUE = -10000000
+MAX_N = 53000000
+MAX_VALUE = maxsize
+MIN_VALUE = -maxsize
 # Чтение данных
-print('Как вы хотите считывать информацию?\n1 - ручной ввод, 2 - ввод из файла, 3 - автоматическое тестирование')
-write_mode = int(input())
-print('Какой алгоритм вы хотите использовать?\n1 - линейный поиск, 2 - бинарный поиск')
-mode_algorithm = int(input())
+# print('Как вы хотите считывать информацию?\n1 - ручной ввод, 2 - ввод из файла, 3 - автоматическое тестирование')
+# write_mode = int(input())
+write_mode = 3
 
 n, array, x = 0, [], 0
 
@@ -31,24 +30,32 @@ elif write_mode == 2:  # Ввод из файла
 elif write_mode == 3:  # Рандомная генерация
     n = MAX_N
     x = randint(MIN_VALUE, MAX_VALUE)
-    array = [randint(MIN_VALUE, MAX_VALUE) for i in range(n)]
 
+    def fill_arr(n):
+        list_res = []
+        for i in range(n):
+            list_res.append(randint(MIN_VALUE, MAX_VALUE))
+        return list_res
+
+    array = fill_arr(n)
 
 from time import time
 # Запуск алгоритма
-if mode_algorithm == 1:  # Линейный алгоритм
-    from linear_search import LinearSearch
-    linear = LinearSearch(n, array)
-    start_time = time()
-    result_index = linear.linear_search(x)
-    print('Индекс заданного числа в массиве:', result_index, '\n', f'{(time() - start_time):.3e}')
+from linear_search import LinearSearch
+linear = LinearSearch(n, array)
+start_time = time()
+result_index = linear.linear_search(x)
+print('Индекс заданного числа в массиве:', result_index, '\n', f'{(time() - start_time) * 1000:.3e}')
 
-elif mode_algorithm == 2:  # Бинарный алгоритм
-    from binary_search import BinarySearch
-    # Сортируем массив для алгоритма
-    array.sort()
-    print('Отсортированный массив', array)
-    binary = BinarySearch(n, array)
-    start_time = time()
-    result_index = binary.binary_search(x)
-    print('Индекс заданного числа в массиве:', result_index, '\nРезультирующее время:', f'{(time() - start_time):.3e}')
+from binary_search import BinarySearch
+array.sort()
+binary = BinarySearch(n, array)
+start_time = time()
+result_index = binary.binary_search(x)
+print('Индекс заданного числа в массиве:', result_index, '\nРезультирующее время:', f'{(time() - start_time) * 1000:.3e}')
+
+from binary_search_1 import BinarySearch_1
+binary = BinarySearch_1(n, array)
+start_time = time()
+result_index = binary.binary_search(x)
+print('Индекс заданного числа в массиве:', result_index, '\nРезультирующее время:', f'{(time() - start_time) * 1000:.3e}')
